@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Заявка на участие | ZHIGER FEST: NEW YEAR EDITION</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #1b060c;
+      --bg-gradient: radial-gradient(circle at top center, #380b18 0%, #1b060c 65%, #110307 100%);
+      --card-bg: rgba(42, 11, 20, 0.85);
+      --card-border: rgba(224, 54, 79, 0.28);
+      --accent: #e0364f;
+      --accent-hover: #ff4762;
+      --accent-glow: rgba(224, 54, 79, 0.4);
+      --text-main: #ffffff;
+      --text-muted: #d4b8c0;
+      --input-bg: rgba(20, 4, 9, 0.75);
+      --input-border: rgba(255, 255, 255, 0.16);
+      --success: #2ecc71;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg-main);
+      background-image: var(--bg-gradient);
+      color: var(--text-main);
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 30px 16px 60px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* Шапка фестиваля */
+    .hero-header {
+      background: linear-gradient(135deg, rgba(64, 14, 28, 0.95) 0%, rgba(30, 7, 14, 0.95) 100%);
+      border: 1px solid var(--card-border);
+      border-top: 4px solid var(--accent);
+      border-radius: 16px;
+      padding: 36px 32px;
+      text-align: center;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(224, 54, 79, 0.18);
+      border: 1px solid var(--accent);
+      color: #ff758a;
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 50px;
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', 'Oswald', sans-serif;
+      font-size: clamp(36px, 6vw, 56px);
+      letter-spacing: 2.5px;
+      line-height: 1.05;
+      color: #ffffff;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      text-shadow: 0 4px 20px rgba(224, 54, 79, 0.35);
+    }
+
+    .hero-title span {
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      font-family: 'Oswald', sans-serif;
+      font-size: 18px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+    }
+
+    .event-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .meta-pill {
+      background: rgba(17, 3, 7, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 10px 18px;
+      font-size: 13.5px;
+      color: #f3e6ea;
+    }
+
+    .meta-pill strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Карточки разделов */
+    .form-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 28px 30px;
+      margin-bottom: 24px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-bottom: 1px solid rgba(224, 54, 79, 0.25);
+      padding-bottom: 14px;
+      margin-bottom: 22px;
+    }
+
+    .section-num {
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Bebas Neue', 'Oswald', sans-serif;
+      font-size: 22px;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px var(--accent-glow);
+    }
+
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    .section-note {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: -12px;
+      margin-bottom: 20px;
+    }
+
+    /* Поля формы */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    @media (max-width: 680px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .form-card {
+        padding: 22px 18px;
+      }
+      .hero-header {
+        padding: 28px 18px;
+      }
+    }
+
+    .field-group {
+      margin-bottom: 18px;
+    }
+
+    .field-group:last-child {
+      margin-bottom: 0;
+    }
+
+    label.field-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 7px;
+    }
+
+    .req {
+      color: var(--accent);
+      font-weight: 700;
+      margin-left: 3px;
+    }
+
+    .hint {
+      display: block;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      line-height: 1.45;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 10px;
+      padding: 12px 15px;
+      color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14.5px;
+      transition: all 0.2s ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(212, 184, 192, 0.45);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(224, 54, 79, 0.22);
+      background: rgba(28, 6, 12, 0.95);
+    }
+
+    select option {
+      background: #230810;
+      color: #ffffff;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 84px;
+    }
+
+    /* Радио-кнопки и чекбоксы в виде карточек */
+    .option-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(20, 4, 9, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 12px 15px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 14px;
+    }
+
+    .option-item:hover {
+      border-color: rgba(224, 54, 79, 0.6);
+      background: rgba(224, 54, 79, 0.08);
+    }
+
+    .option-item input[type="radio"],
+    .option-item input[type="checkbox"] {
+      accent-color: var(--accent);
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .option-text strong {
+      color: #ffffff;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .option-text span {
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    /* Памятка по фонограмме */
+    .audio-box {
+      background: rgba(224, 54, 79, 0.12);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      padding: 15px 18px;
+      margin-bottom: 18px;
+      font-size: 13.5px;
+    }
+
+    .audio-box code {
+      display: inline-block;
+      background: rgba(15, 3, 6, 0.8);
+      border: 1px solid rgba(224, 54, 79, 0.35);
+      color: #ff8598;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-top: 6px;
+      font-family: monospace;
+      font-size: 13px;
+    }
+
+    /* Кнопка отправки */
+    .submit-wrap {
+      text-align: center;
+      margin-top: 28px;
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, var(--accent) 0%, #b82238 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      padding: 16px 42px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 10px 28px var(--accent-glow);
+      transition: all 0.25s ease;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(135deg, var(--accent-hover) 0%, #cc273f 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(224, 54, 79, 0.55);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Сообщение об успехе */
+    .success-banner {
+      display: none;
+      background: rgba(25, 65, 42, 0.92);
+      border: 1px solid #2ecc71;
+      border-radius: 14px;
+      padding: 28px;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .success-banner h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 26px;
+      text-transform: uppercase;
+      color: #2ecc71;
+      margin-bottom: 10px;
+    }
+
+    .btn-again {
+      margin-top: 16px;
+      background: transparent;
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-again:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-top: 24px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- ШАПКА -->
+  <header class="hero-header">
+    <div class="badge">Официальная регистрация участников</div>
+    <h1 class="hero-title">ZHIGER FEST: <span>NEW YEAR EDITION</span></h1>
+    <div class="hero-subtitle">Республиканский конкурс-фестиваль хореографического искусства</div>
+    <div class="event-meta">
+      <div class="meta-pill">📅 <strong>Дата:</strong> 20 декабря 2026 г.</div>
+      <div class="meta-pill">📍 <strong>Место:</strong> г. Орал (Уральск), ДК Молодёжи, ул. Карбышева, 60</div>
+      <div class="meta-pill">📱 <strong>WhatsApp:</strong> +7 707 898 83 95</div>
+    </div>
+  </header>
+
+  <form id="zhigerForm">
+    <!-- БЛОК 1 -->
+    <section class="form-card">
+      <div class="section-header">
+        <div class="section-num">01</div>
+        <h2 class="section-title">Общая информация о коллективе</h2>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="collective_name">1. Название коллектива / ФИО солиста (полностью) <span class="req">*</span></label>
+        <span class="hint">Пример: Образцовый хореографический ансамбль «Вдохновение» / Иванова Анна</span>
+        <input type="text" id="collective_name" name="collective_name" placeholder="Введите название коллектива или ФИО солиста" required>
+      </div>
+
+      <div class="grid-2">
+        <div class="field-group">
+          <label class="field-label" for="location">2. Страна, город / населенный пункт <span class="req">*</span></label>
+          <input type="text" id="location" name="location" placeholder="Например: Казахстан, г. Уральск" required>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="phone">3. Контактный номер телефона (WhatsApp) <span class="req">*</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="+7 (7__) ___-__-__" required>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field-group">
+          <label class="field-label" for="insta_collective">4.1. Instagram коллектива (если имеется)</label>
+          <span class="hint">Для отметок в соцсетях фестиваля</span>
+          <input type="text" id="insta_collective" name="insta_collective" placeholder="@account_collective">
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="insta_leader">4.2. Instagram руководителя / хореографа</label>
+          <span class="hint">Если имеется</span>
+          <input type="text" id="insta_leader" name="insta_leader" placeholder="@account_leader">
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field-group">
+          <label class="field-label" for="leader_name">5. ФИО руководителя коллектива (полностью) <span class="req">*</span></label>
+          <input type="text" id="leader_name" name="leader_name" placeholder="Фамилия Имя Отчество" required>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="choreographer_name">6. ФИО хореографа-постановщика</label>
+          <input type="text" id="choreographer_name" name="choreographer_name" placeholder="Заполняется, если отличается от руководителя">
+        </div>
+      </div>
+    </section>
+
+    <!-- БЛОК 2 -->
+    <section class="form-card">
+      <div class="section-header">
+        <div class="section-num">02</div>
+        <h2 class="section-title">Конкурсная программа</h2>
+      </div>
+      <p class="section-note">Заполняется для каждого конкурсного номера отдельно. Если вы заявляете несколько номеров, после отправки нажмите «Подать ещё один номер».</p>
+
+      <div class="field-group">
+        <label class="field-label" for="nomination">1. Номинация (направление хореографии) <span class="req">*</span></label>
+        <span class="hint">Пример: Эстрадный танец / Современный танец / Народный танец / Спецноминация «Зимняя премьера»</span>
+        <input type="text" id="nomination" name="nomination" placeholder="Укажите номинацию" required>
+      </div>
+
+      <div class="grid-2">
+        <div class="field-group">
+          <label class="field-label" for="participation_form">2. Форма участия <span class="req">*</span></label>
+          <select id="participation_form" name="participation_form" required>
+            <option value="" disabled selected>Выберите форму участия...</option>
+            <option value="Соло">Соло</option>
+            <option value="Дуэт">Дуэт</option>
+            <option value="Трио">Трио</option>
+            <option value="Малая форма (4–8 чел.)">Малая форма (4–8 чел.)</option>
+            <option value="Ансамбль (от 9 и более чел.)">Ансамбль (от 9 и более чел.)</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="age_group">3. Возрастная группа <span class="req">*</span></label>
+          <select id="age_group" name="age_group" required>
+            <option value="" disabled selected>Выберите возрастную группу...</option>
+            <option value="3–5 лет">3–5 лет</option>
+            <option value="6–7 лет">6–7 лет</option>
+            <option value="8–10 лет">8–10 лет</option>
+            <option value="11–13 лет">11–13 лет</option>
+            <option value="14–16 лет">14–16 лет</option>
+            <option value="17–20 лет">17–20 лет</option>
+            <option value="Смешанная">Смешанная</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field-group">
+          <label class="field-label" for="participants_count">4.1. Общее количество участников в номере <span class="req">*</span></label>
+          <input type="number" id="participants_count" name="participants_count" min="1" placeholder="Например: 12" required>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="duration">5. Хронометраж номера (строго в мин. и сек.) <span class="req">*</span></label>
+          <input type="text" id="duration" name="duration" placeholder="Пример: 3 мин. 45 сек." required>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="age_breakdown">4.2. Расшифровка количества участников по возрастам <span class="req">*</span></label>
+        <span class="hint">Укажите, кому сколько лет (для формирования протоколов и наград)</span>
+        <textarea id="age_breakdown" name="age_breakdown" placeholder="Пример: 10 лет — 5 чел., 11 лет — 7 чел." required></textarea>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="performance_title">6. Название конкурсного номера <span class="req">*</span></label>
+        <input type="text" id="performance_title" name="performance_title" placeholder="Введите название постановки" required>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">7. Уровень мастерства (Категория) <span class="req">*</span></label>
+        <div class="option-list">
+          <label class="option-item">
+            <input type="radio" name="skill_level" value="Общая категория (Любители)" required>
+            <div class="option-text">
+              <strong>Общая категория</strong>
+              <span>Для коллективов и солистов, не имеющих профессионального статуса</span>
+            </div>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="skill_level" value="PRO-категория" required>
+            <div class="option-text">
+              <strong>PRO-категория</strong>
+              <span>Для профессионалов (учащиеся профильных вузов/колледжей, артисты театров, педагоги-хореографы, победители международных конкурсов)</span>
+            </div>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- БЛОК 3 -->
+    <section class="form-card">
+      <div class="section-header">
+        <div class="section-num">03</div>
+        <h2 class="section-title">Технические требования и реквизит</h2>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">1. Выступление с точки или с выхода? <span class="req">*</span></label>
+        <div class="option-list">
+          <label class="option-item">
+            <input type="radio" name="stage_entry" value="С точки" required>
+            <div class="option-text">
+              <strong>С точки</strong>
+              <span>Участники занимают позицию на сцене до включения музыки</span>
+            </div>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="stage_entry" value="С выхода" required>
+            <div class="option-text">
+              <strong>С выхода</strong>
+              <span>Включение музыки до выхода участников на сцену</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="lighting_tech">2. Необходимый свет и особые технические требования <span class="req">*</span></label>
+        <span class="hint">Например: полный свет / темный кадр в начале / специфический цвет света. Если требований нет — напишите «Стандарт»</span>
+        <input type="text" id="lighting_tech" name="lighting_tech" placeholder="Стандарт" required>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="props">3. Использование реквизита в номере <span class="req">*</span></label>
+        <span class="hint">Опишите, какой реквизит выносится на сцену (или напишите «Без реквизита»). Помните о запрете на сыпучие, летающие материалы и открытый огонь.</span>
+        <textarea id="props" name="props" placeholder="Опишите реквизит или укажите: Без реквизита" required></textarea>
+      </div>
+    </section>
+
+    <!-- БЛОК 4 И 5 -->
+    <section class="form-card">
+      <div class="section-header">
+        <div class="section-num">04</div>
+        <h2 class="section-title">Музыкальное сопровождение и подтверждения</h2>
+      </div>
+
+      <div class="audio-box">
+        <strong>🎵 Отправка фонограммы:</strong><br>
+        Фонограмма должна быть отправлена в формате <strong>MP3 (высокое качество)</strong> на WhatsApp <strong>+7 707 898 83 95</strong>.<br>
+        Файл с музыкой должен быть переименован строго по шаблону:<br>
+        <code>[Название коллектива] — [Название номера] — [Хронометраж]</code><br>
+        <span style="font-size: 12px; color: #d4b8c0;">Пример: Вдохновение - Зимняя сказка - 3.45.mp3</span>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Обязательные подтверждения <span class="req">*</span></label>
+        <div class="option-list">
+          <label class="option-item">
+            <input type="checkbox" name="agree_audio" value="Да" required>
+            <div class="option-text">
+              <span>Обязуюсь отправить фонограмму MP3 по указанному шаблону на WhatsApp +7 707 898 83 95.</span>
+            </div>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="agree_rules" value="Да" required>
+            <div class="option-text">
+              <span>Ознакомлен(а) и согласен(на) с <strong>Положением</strong> Республиканского конкурса-фестиваля и <strong>правилами безопасности</strong> (запрет на опасные материалы).</span>
+            </div>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="agree_pd" value="Да" required>
+            <div class="option-text">
+              <span>Даю согласие на обработку персональных данных и публикацию фото/видео материалов в некоммерческих целях (в соответствии с законодательством РК).</span>
+            </div>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="agree_finance" value="Да" required>
+            <div class="option-text">
+              <span>Ознакомлен(а) с <strong>финансовыми условиями</strong> (оргвзнос не возвращается при отказе менее чем за 10 дней до мероприятия).</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="field-group" style="margin-top: 20px;">
+        <label class="field-label" for="confirm_signature">Подтверждаю достоверность данных (введите Фамилию И.О. руководителя) <span class="req">*</span></label>
+        <input type="text" id="confirm_signature" name="confirm_signature" placeholder="Например: Иванова А.С." required>
+      </div>
+
+      <div class="submit-wrap">
+        <button type="submit" class="btn-submit" id="submitBtn">Отправить заявку</button>
+      </div>
+    </section>
+  </form>
+
+  <!-- БАННЕР УСПЕШНОЙ ОТПРАВКИ -->
+  <div class="success-banner" id="successBanner">
+    <h3>✅ Заявка успешно отправлена!</h3>
+    <p>Данные автоматически записаны в таблицу оргкомитета <strong>ZHIGER FEST: NEW YEAR EDITION</strong>.<br>
+    Не забудьте отправить фонограмму MP3 на WhatsApp <strong>+7 707 898 83 95</strong>.</p>
+    <button type="button" class="btn-again" onclick="resetForNextNumber()">+ Подать ещё один номер от этого коллектива</button>
+  </div>
+
+  <div class="footer-note">
+    Оргкомитет Республиканского конкурса-фестиваля «ZHIGER FEST: NEW YEAR EDITION» • 2026
+  </div>
+</div>
+
+<script>
+  // =========================================================================
+  // ВСТАВЬТЕ СЮДА ССЫЛКУ ВЕБ-ПРИЛОЖЕНИЯ ИЗ GOOGLE APPS SCRIPT (после развертывания)
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwLlaDX8aZEtEThoYNR2-ECJit2HqcgS_OwmyF3YTiSfDuyWWcSfwSrt5eJ95IjNgKkeQ/exec"
+  // =========================================================================
+
+  const form = document.getElementById('zhigerForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const successBanner = document.getElementById('successBanner');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("ВСТАВЬТЕ_СЮДА")) {
+      alert("Внимание для организатора: в файле еще не прописана ссылка GOOGLE_SCRIPT_URL для выгрузки в Google Таблицу. Инструкция по подключению приложена в ответе!");
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Отправка заявки...";
+
+    const formData = new FormData(form);
+    const dataObj = {};
+    formData.forEach((value, key) => {
+      dataObj[key] = value;
+    });
+
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataObj)
+      });
+
+      form.style.display = 'none';
+      successBanner.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (error) {
+      alert("Произошла ошибка при отправке. Проверьте интернет-соединение и попробуйте снова.");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Отправить заявку";
+    }
+  });
+
+  // Сброс только данных номера (данные коллектива и руководителя сохраняются для удобства!)
+  function resetForNextNumber() {
+    const keepIds = ['collective_name', 'location', 'phone', 'insta_collective', 'insta_leader', 'leader_name', 'choreographer_name', 'confirm_signature'];
+    const savedValues = {};
+    keepIds.forEach(id => {
+      savedValues[id] = document.getElementById(id).value;
+    });
+
+    form.reset();
+
+    keepIds.forEach(id => {
+      document.getElementById(id).value = savedValues[id];
+    });
+
+    successBanner.style.display = 'none';
+    form.style.display = 'block';
+    document.getElementById('nomination').scrollIntoView({ behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
